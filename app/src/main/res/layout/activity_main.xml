@@ -5,14 +5,42 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:padding="12dp"
   tools:context=".main.MainActivity">
+  
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/query_input_layout"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:hint="Movie Name"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/edit_query"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+  </com.google.android.material.textfield.TextInputLayout>
 
   <com.google.android.material.button.MaterialButton
+    android:id="@+id/submit_button"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    android:text="submit"
+    app:layout_constraintStart_toStartOf="@id/query_input_layout"
+    app:layout_constraintEnd_toEndOf="@id/query_input_layout"
+    app:layout_constraintTop_toBottomOf="@id/query_input_layout"/>
 
   <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/result_list"
     android:layout_width="match_parent"
-    android:layout_height="0dp"/>
+    android:layout_height="0dp"
+    app:layout_constraintTop_toBottomOf="@id/submit_button"
+    app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
