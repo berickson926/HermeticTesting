@@ -23,7 +23,7 @@ private interface MovieDbApi {
 class MovieService @Inject constructor() {
 
     // Insert your API key here
-    private val apiKey = "aff026b46049fd801b249b0e8bae97e2"
+    private val apiKey = ""
     private val movieDbApi: MovieDbApi by lazy { createMovieAPI() }
 
     fun getMovie(keyword: String): Observable<MoviePage> {
