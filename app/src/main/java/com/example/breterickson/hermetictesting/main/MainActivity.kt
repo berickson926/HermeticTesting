@@ -1,8 +1,8 @@
 package com.example.breterickson.hermetictesting.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.breterickson.hermetictesting.AndroidApplication
 import com.example.breterickson.hermetictesting.R
 import com.example.breterickson.hermetictesting.data.MovieData
@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity(), MainView {
 
     @Inject
     lateinit var presenter: MainPresenter
+
+    @Inject
+    lateinit var adapter: MovieListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,11 @@ class MainActivity : AppCompatActivity(), MainView {
             val query = edit_query.text.toString()
             presenter.submitQuery(query)
         }
+
+        result_list.apply {
+            adapter = this@MainActivity.adapter
+            layoutManager = LinearLayoutManager(this@MainActivity)
+        }
     }
 
     override fun onPause() {
@@ -37,6 +45,6 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun showResults(results: List<MovieData>) {
-        Log.d("VIEW", "Results: $results")
+        adapter.setResults(results)
     }
 }
