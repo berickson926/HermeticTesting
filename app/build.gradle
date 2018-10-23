@@ -6,62 +6,54 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.breterickson.hermetictesting"
+        applicationId 'com.example.breterickson.hermetictesting'
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.breterickson.hermetictesting.AndroidTestRunner"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    productFlavors {
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     implementation 'com.google.android.material:material:1.0.0'
-
     // Dagger2
     implementation 'com.google.dagger:dagger:2.17'
     kapt 'com.google.dagger:dagger-compiler:2.17'
-
     // Retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-
     // RxJava2
-    implementation "io.reactivex.rxjava2:rxjava:2.2.2"
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-
     // Glide
-    implementation ("com.github.bumptech.glide:glide:4.8.0") {
+    implementation('com.github.bumptech.glide:glide:4.8.0') {
         exclude group: "com.android.support"
     }
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-beta02'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta02'
-    androidTestImplementation 'androidx.test.ext:junit:1.0.0-beta02'
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:3.1.0-beta02", {
+    // Instrumentation Testing
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:2.2.2", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
+    })
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:2.2.2", {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
         exclude group: 'com.google.code.findbugs'
     }
-    androidTestImplementation("com.android.support.test.espresso:espresso-intents:3.1.0-beta02", {
+    androidTestImplementation("com.android.support.test.espresso:espresso-intents:2.2.2", {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.google.code.findbugs'
     })
-    androidTestImplementation 'org.mockito:mockito-android:2.19.0'
+    androidTestImplementation 'org.mockito:mockito-android:2.23.0'
     androidTestImplementation 'com.squareup.rx.idler:rx2-idler:0.9.0'
     kaptAndroidTest 'com.google.dagger:dagger-compiler:2.17'
 }

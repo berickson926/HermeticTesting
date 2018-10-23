@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
 
         DaggerMainComponent.builder()
-            .applicationComponent((application as AndroidApplication).component)
+            .applicationComponent((application as AndroidApplication).getComponent())
             .mainModule(MainModule(this))
             .build()
             .inject(this)

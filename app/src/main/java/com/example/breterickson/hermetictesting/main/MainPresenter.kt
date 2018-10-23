@@ -32,7 +32,7 @@ class MainPresenter @Inject constructor(
     }
 
     private fun showError(throwable: Throwable) {
-        // Ideally have some actual error handling
-        Log.e("Presenter", "Ooops!")
+        // Ideally do something more meaningful with the error here.
+        Log.e("Presenter", "Error", throwable)
     }
 }

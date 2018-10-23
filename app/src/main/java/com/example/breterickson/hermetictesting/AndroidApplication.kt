@@ -2,18 +2,22 @@ package com.example.breterickson.hermetictesting
 
 import android.app.Application
 
-class AndroidApplication : Application() {
+open class AndroidApplication : Application() {
 
-    lateinit var component: ApplicationComponent
+    private lateinit var component: ApplicationComponent
 
     override fun onCreate() {
         super.onCreate()
+        component = prepareApplicationComponent()
+        component.inject(this@AndroidApplication)
+    }
 
-        DaggerApplicationComponent.builder()
+    fun getComponent(): ApplicationComponent {
+        return component
+    }
+
+    open fun prepareApplicationComponent(): ApplicationComponent {
+        return DaggerApplicationComponent.builder()
             .build()
-            .apply {
-                component = this
-                component.inject(this@AndroidApplication)
-            }
     }
 }

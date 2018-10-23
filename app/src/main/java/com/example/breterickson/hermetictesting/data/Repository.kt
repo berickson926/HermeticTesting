@@ -6,7 +6,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Repository @Inject constructor(private val movieService: MovieService) {
+class Repository @Inject constructor(
+    private val movieService: MovieService
+) {
 
     private val cache = mutableMapOf<String, List<MovieData>>()
 
